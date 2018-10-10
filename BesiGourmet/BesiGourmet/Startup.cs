@@ -1,90 +1,79 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BesiGourmet.Models;
-using Microsoft.AspNetCore.Authentication;
+﻿using BesiGourmet.AAD;
+using BesiGourmet.Database;
+using BesiGourmet.KeyVault;
+using BesiGourmet.StartupRegistrar;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authentication.AzureAD.UI;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Collections.Generic;
 
 namespace BesiGourmet
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<GourmetContext>(optionsBuilder => optionsBuilder.UseInMemoryDatabase("MenuDb"));
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			// setup swagger
+			SwaggerRegistrar.AddSwagger(services);
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+			services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
-            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-                .AddAzureAD(options => Configuration.Bind("AzureAd", options));
+			////var kvClient = new KVClient(Configuration["KeyVault:VaultUri"]);
+			////var connectionString = kvClient.GetValueAsync("ConnectionString").Result;
 
-            services.AddMvc(options =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddAuthorization(o =>
+			{
+				o.AddPolicy("default", policy =>
+				{
+					// Require the basic "Access app-name" claim by default
+					policy.RequireClaim(Constants.ScopeClaimType, "user_impersonation");
+				});
+			});
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "AzureDemoWebApp", Version = "v1" });
-            });
-        }
+			services
+				.AddAuthentication(o =>
+				{
+					o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+				})
+				.AddJwtBearer(o =>
+				{
+					o.Authority = $"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}";
+					o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+					{
+						// Both App ID URI and client id are valid audiences in the access token
+						ValidAudiences = new List<string>
+						{
+							Configuration["AzureAd:AppIdUri"]
+						}
+					};
+				});
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-            app.UseCookiePolicy();
-            app.UseAuthentication();
-            app.UseHttpsRedirection();
-            app.UseMvc();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AzureDemoWebApp v1");
-            });
-        }
-    }
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddApplicationInsightsTelemetry();
+
+		}
+
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			// setup swagger middleware
+			SwaggerRegistrar.UseSwaggerMiddleware(app);
+			////app.UseHttpsRedirection();
+			app.UseAuthentication();
+			app.UseMvc();
+		}
+	}
 }

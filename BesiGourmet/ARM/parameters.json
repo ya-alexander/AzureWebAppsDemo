@@ -1,0 +1,114 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "servers_besigourmet_name": {
+            "value": null
+        },
+        "sites_BesiGourmetWebApp_name": {
+            "value": null
+        },
+        "sites_Reminder20181001041308_name": {
+            "value": null
+        },
+        "vaults_BesiGourmetKeyVault_name": {
+            "value": null
+        },
+        "components_BesiGourmetWebApp_name": {
+            "value": null
+        },
+        "config_web_name": {
+            "value": null
+        },
+        "firewallRules_all_name": {
+            "value": null
+        },
+        "serverfarms_Reminder20181001041308Plan_name": {
+            "value": null
+        },
+        "advisors_DropIndex_name": {
+            "value": null
+        },
+        "keys_ServiceManaged_name": {
+            "value": null
+        },
+        "config_web_name_1": {
+            "value": null
+        },
+        "advisors_CreateIndex_name": {
+            "value": null
+        },
+        "databases_BesiGourmet_name": {
+            "value": null
+        },
+        "advisors_DefragmentIndex_name": {
+            "value": null
+        },
+        "auditingPolicies_Default_name": {
+            "value": null
+        },
+        "advisors_ForceLastGoodPlan_name": {
+            "value": null
+        },
+        "advisors_DbParameterization_name": {
+            "value": null
+        },
+        "encryptionProtector_current_name": {
+            "value": null
+        },
+        "alertrules_Failure_Anomalies___BesiGourmetWebApp_name": {
+            "value": null
+        },
+        "secrets_ConnectionString_name": {
+            "value": null
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": null
+        },
+        "advisors_DropIndex_name_1": {
+            "value": null
+        },
+        "auditingPolicies_Default_name_1": {
+            "value": null
+        },
+        "databases_master_name": {
+            "value": null
+        },
+        "advisors_CreateIndex_name_1": {
+            "value": null
+        },
+        "geoBackupPolicies_Default_name": {
+            "value": null
+        },
+        "advisors_DefragmentIndex_name_1": {
+            "value": null
+        },
+        "auditingPolicies_Default_name_2": {
+            "value": null
+        },
+        "geoBackupPolicies_Default_name_1": {
+            "value": null
+        },
+        "advisors_ForceLastGoodPlan_name_1": {
+            "value": null
+        },
+        "advisors_DbParameterization_name_1": {
+            "value": null
+        },
+        "transparentDataEncryption_current_name": {
+            "value": null
+        },
+        "transparentDataEncryption_current_name_1": {
+            "value": null
+        },
+        "hostNameBindings_besigourmetwebapp.azurewebsites.net_name": {
+            "value": null
+        },
+        "hostNameBindings_reminder20181001041308.azurewebsites.net_name": {
+            "value": null
+        },
+        "sites_BesiGourmetWebApp_serverFarmId": {
+            "value": null
+        }
+    }
+}

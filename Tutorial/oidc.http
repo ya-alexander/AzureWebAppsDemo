@@ -1,0 +1,20 @@
+@TenantId = bd24d3f2-8eb3-4e40-9c8c-1b123c8f0084
+@ClientId = 232d14d8-2ae6-47c8-826c-da54a056ae11
+@RedirectUri = https%3A%2F%2Flocalhost%3A44307%2Fsignin-oidc
+
+### fetch metadata
+GET https://login.microsoftonline.com/{{TenantId}}/v2.0/.well-known/openid-configuration
+
+### fetch id_token
+GET https://login.microsoftonline.com/{{TenantId}}/oauth2/v2.0/authorize?client_id={{ClientId}}&response_type=id_token&redirect_uri={{RedirectUri}}&response_mode=form_post&scope=openid&state=12345&nonce=678910
+
+# execute in browser
+https://login.microsoftonline.com/bd24d3f2-8eb3-4e40-9c8c-1b123c8f0084/oauth2/v2.0/authorize?client_id=232d14d8-2ae6-47c8-826c-da54a056ae11&response_type=id_token&redirect_uri=https%3A%2F%2Flocalhost%3A44307%2Fsignin-oidc&response_mode=form_post&scope=openid&state=12345&nonce=678910
+
+### fetch access token
+GET https://login.microsoftonline.com/alexanderhubersoftwarearchi.onmicrosoft.com/oauth2/v2.0/authorize?client_id=232d14d8-2ae6-47c8-826c-da54a056ae11&response_type=id_token+token&redirect_uri=https%3A%2F%2Flocalhost%3A44307%2Fsignin-oidc&response_mode=fragment&scope=openid%20https%3A%2F%2Fgourmet.besi.com%2Fuser_impersonation&state=12345&nonce=678910
+
+https://login.microsoftonline.com/alexanderhubersoftwarearchi.onmicrosoft.com/oauth2/v2.0/authorize?client_id=232d14d8-2ae6-47c8-826c-da54a056ae11&response_type=id_token+token&redirect_uri=https%3A%2F%2Flocalhost%3A44307%2Fsignin-oidc&response_mode=fragment&scope=openid%20https%3A%2F%2Ffoo%2Fuser_impersonation&state=12345&nonce=678910
+
+
+https://login.microsoftonline.com/alexanderhubersoftwarearchi.onmicrosoft.com/oauth2/v2.0/authorize?client_id=232d14d8-2ae6-47c8-826c-da54a056ae11&response_type=id_token+token&redirect_uri=https%3A%2F%2Flocalhost%3A44307%2Fsignin-oidc&response_mode=fragment&scope=openid%20https%3A%2F%2Ftimetracking.com%2Fuser_impersonation&state=12345&nonce=678910https://login.microsoftonline.com/alexanderhubersoftwarearchi.onmicrosoft.com/oauth2/v2.0/authorize?client_id=232d14d8-2ae6-47c8-826c-da54a056ae11&response_type=id_token+token&redirect_uri=https%3A%2F%2Flocalhost%3A44307%2Fsignin-oidc&response_mode=fragment&scope=openid%20https%3A%2F%2Ftimetracking.com%2Fuser_impersonation&state=12345&nonce=678910

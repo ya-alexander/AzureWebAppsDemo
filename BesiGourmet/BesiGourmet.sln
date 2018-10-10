@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BesiGourmet", "BesiGourmet\BesiGourmet.csproj", "{E11FFA02-5E07-48A4-A4D0-05579C714A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BesiGourmet", "BesiGourmet\BesiGourmet.csproj", "{D6793A10-A123-4395-A3B1-1DAF77CF027A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{0AA62D51-8AAA-4781-BD1D-7D156BF18420}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder", "Reminder\Reminder.csproj", "{B38AD231-BA82-4297-BB62-20C20BC994A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{B7DA2B84-64FF-4F0A-A32D-F48A7BBA311D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BesiGourmet.Test", "BesiGourmet.Test\BesiGourmet.Test.csproj", "{88ED2EBE-760E-44B3-AADC-8DF1CF6C1D94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +19,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E11FFA02-5E07-48A4-A4D0-05579C714A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E11FFA02-5E07-48A4-A4D0-05579C714A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E11FFA02-5E07-48A4-A4D0-05579C714A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E11FFA02-5E07-48A4-A4D0-05579C714A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6793A10-A123-4395-A3B1-1DAF77CF027A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6793A10-A123-4395-A3B1-1DAF77CF027A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6793A10-A123-4395-A3B1-1DAF77CF027A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6793A10-A123-4395-A3B1-1DAF77CF027A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B38AD231-BA82-4297-BB62-20C20BC994A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38AD231-BA82-4297-BB62-20C20BC994A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38AD231-BA82-4297-BB62-20C20BC994A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B38AD231-BA82-4297-BB62-20C20BC994A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88ED2EBE-760E-44B3-AADC-8DF1CF6C1D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88ED2EBE-760E-44B3-AADC-8DF1CF6C1D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88ED2EBE-760E-44B3-AADC-8DF1CF6C1D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88ED2EBE-760E-44B3-AADC-8DF1CF6C1D94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D6793A10-A123-4395-A3B1-1DAF77CF027A} = {B7DA2B84-64FF-4F0A-A32D-F48A7BBA311D}
+		{B38AD231-BA82-4297-BB62-20C20BC994A2} = {0AA62D51-8AAA-4781-BD1D-7D156BF18420}
+		{88ED2EBE-760E-44B3-AADC-8DF1CF6C1D94} = {B7DA2B84-64FF-4F0A-A32D-F48A7BBA311D}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A6E566F6-025C-4DF6-98E8-8C8474B79373}
+		SolutionGuid = {3A62CB41-4E6D-4E54-92EA-FBFC50595B61}
 	EndGlobalSection
 EndGlobal
