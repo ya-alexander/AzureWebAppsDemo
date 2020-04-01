@@ -40,14 +40,10 @@ jobs:
         
     - name: Azure Resource Manager (ARM) Template Deployment
       uses: whiteducksoftware/azure-arm-action-js@v1
+      env:
+        RESOURCE_GROUP: github-actions-test
       with:
         # Provide the name of a resource group.
-        resourceGroupName: 
+        resourceGroupName: ${{ env.RESOURCE_GROUP }}
         # Specify the path to the Azure Resource Manager template.
-        templateLocation: 
-        # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group).
-        deploymentMode: # optional, default is Incremental
-        # Specifies the name of the resource group deployment to create.
-        deploymentName: # optional
-        # Supply deployment parameter values.
-        parameters: # optional
+        templateLocation: ..\..\BesiGourmet\ARM\template.json
