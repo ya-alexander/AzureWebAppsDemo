@@ -46,4 +46,4 @@ jobs:
         # Provide the name of a resource group.
         resourceGroupName: ${{ env.RESOURCE_GROUP }}
         # Specify the path to the Azure Resource Manager template.
-        templateLocation: ..\..\BesiGourmet\ARM\template.json
+        templateLocation: .\..\..\BesiGourmet\ARM\template.json
